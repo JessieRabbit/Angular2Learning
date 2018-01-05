@@ -15,6 +15,9 @@ ng g c test2
 {"spec":false} 
 ```
 重新建立此檔案就不會被生成<br />
+
+*****
+
 ## ●綁定
 ★單向綁定
 ```
@@ -25,6 +28,9 @@ ng g c test2
 ```
 [(ngModel)] = "name"
 ```
+
+*****
+
 ## ●click事件與函式呼叫
 ```
 <button (click)="Call();">click Me!!</button>
@@ -36,6 +42,8 @@ ng g c test2
   }
  ```
 
+*****
+
 ## ●ngif與hidden
 ★ngIf
 ```
@@ -45,6 +53,8 @@ TypeScript用法必須用this.變數才不會出現紅字<br />
 ★hidden<br />
 畫面上看的到，但domain name還是會存在<br />
 相較於ngIf相反，把domain name移除<br />
+
+*****
 
 ## ●屬性綁定
 ```
@@ -63,4 +73,23 @@ TypeScript用法必須用this.變數才不會出現紅字<br />
 [disabled]
 [attr.disabled]
 ```
-上面disabled兩個達到同樣的效果，只是domain name有些不一樣
+上面disabled兩個達到同樣的效果，只是domain name有些不一樣<br />
+
+*****
+
+## ●事件綁定
+(事件名稱)
+```
+<div (mouseover) = "message='進來'" (mouseleave)="message='離開'" style="height:300px; width:300px;background-color:orange;">
+</div>
+{{ message }}     
+```
+事件名稱參考網址<br />
+https://developer.mozilla.org/en-US/docs/Web/Events<br />
+
+*****
+
+## ●#var與模板引用變量
+取得dom的元素與操作<br />
+#自定義變數，抓取input的元素<input type="text"/><br />
+cc(_pp:類別){...}<br />
