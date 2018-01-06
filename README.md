@@ -96,7 +96,7 @@ cc(_pp:類別){...}<br />
 
 *****
 
-## [style]與[ngStyle]
+## ●[style]與[ngStyle]
 [style]與屬性綁定是一樣，一開始
 ```
 [style]="css"
@@ -126,7 +126,7 @@ backgroundColor:"black"
 ```
 *****
 
-## [class]與[ngClass]
+## ●[class]與[ngClass]
 [class]與屬性綁定是一樣，也可以利用bool控管
 ```
 <div [class.rabbit1] = "rabbit">
