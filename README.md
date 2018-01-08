@@ -162,3 +162,24 @@ css檔寫上
 ```
 this.變數.class
 ```
+
+*****
+
+## ●重複顯示與ngfor
+*常見列表顯示，產生出重複的結構，for迴圈（想要重複)<br />
+*新增和刪除<br />
+```
+*ngFor="let item of cpu"
+```
+item自由命名<br />
+★push新增
+```
+this.cpu.push({ name:this.name,price:this.price,rank:this.rank  });
+```
+ngFor有提供內建 let i=index 第一筆index就為0..以此類推<br />
+★splice js內建的splice切割
+```
+delete(i:number){
+    this.cpu.splice(i,1);
+}
+```
