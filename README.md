@@ -183,3 +183,24 @@ delete(i:number){
     this.cpu.splice(i,1);
 }
 ```
+
+*****
+
+## ●ngSwitch
+簡單來說就像switch...case程式<br />
+
+## ●管道與pipe
+某種東西需要格式化ＥＸ：日期<br />
+內建管道api參考網址：<br />
+https://angular.io/api?type=pipe
+```
+{{ items.date | date | lowercase}}
+```
+很多管道可以無限加下去
+```
+date_expression | date[:format[:timezone[:locale]]]
+```
+format為“date：‘....’”
+```
+{{ (items.date | date:'y')-1911}}{{ items.date | date:'-MM-dd' | lowercase}}
+```
