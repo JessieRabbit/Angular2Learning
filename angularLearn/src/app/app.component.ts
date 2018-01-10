@@ -71,4 +71,9 @@ export class AppComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
+
+  //表單驗證
+  see(f:any){
+    console.log(f);
+  }
 }

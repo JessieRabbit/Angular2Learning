@@ -87,6 +87,27 @@
     <li> {{ book.starRating }}</li>
   </div> -->
 
+  <div class="container">
+    <form #myForm="ngForm">
+        <div class="form-group">
+            <label>帳號</label>
+            <input type="text" class="form-control" ngModel name="acc" required>
+        </div>
+        <div class="form-group">
+          <label>電話</label>
+          <input type="text" class="form-control"  ngModel name="tel"  #tel= "ngModel" minlength = "7" pattern="[0-9]*"   required>
+        </div>
+        <div style="color:red;" *ngIf="tel.errors && tel.touched">
+          <div *ngIf="tel.errors.required">必填</div>
+          <div *ngIf="tel.errors.minlength">長度不小於7</div>
+          <div *ngIf="tel.errors.pattern">格式不符合</div>
+        </div>
+        <button type="button" class="btn btn-success" [disabled] = "myForm.invalid">送出</button>
+        <button type="button" (click)="see(myForm)">查看</button>
+    </form>
+
+    <pre>{{ tel.errors | json }}</pre>
+  </div>
 
   <table border="1" *ngFor="let book of books">
     <tr>
