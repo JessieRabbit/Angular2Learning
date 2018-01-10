@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component , Input , Output , EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-welcome',  
@@ -7,5 +7,12 @@ import { Component} from '@angular/core';
 })
 export class WelcomeComponent{
   pageTitle:string = "Welcome";
+  imageURL="/assets/images/rabbut.png";
 
+  @Input() reviews:number;
+  @Output() notify:EventEmitter<string> = new EventEmitter<string>();
+
+  onClick():void{
+    this.notify.emit('Message from child');
+  }
 }

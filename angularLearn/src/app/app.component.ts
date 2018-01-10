@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { BookService } from './book/book.service';
+import { IBook } from './book/book';
+import { Component , OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  // ngOnInit(){
+  //   console.log('init');
+  // }
+  // ngOnChanges(){
+  //   console.log('new change detected');
+  // }
   title = 'app';
+  rabbit = 30;
 
   //重複顯示與ngfor
   name="";
@@ -35,4 +44,31 @@ export class AppComponent {
   //   {name:"美國",precent:"700",rank:3},
   //   {name:"倫敦",precent:"900",rank:5}
   // ];
+
+  dateString=new Date();
+  Description="123456789010223423224243442";
+
+  showMessage:string="test";
+  onNotifyClicked(message:string):void{
+    this.showMessage=message;
+  }
+
+  books:IBook[];
+  // constructor(private _bookService:BookService){
+  //   this.books = _bookService.getBook();
+  // }
+
+  errorMessage:string;
+  constructor(private _bookService:BookService){}
+  ngOnInit(){
+    this.getBooks()
+  }
+
+  getBooks(){
+    this._bookService.getBook()
+    .subscribe(
+      books => this.books=books,
+      error => this.errorMessage = <any>error
+    );
+  }
 }
