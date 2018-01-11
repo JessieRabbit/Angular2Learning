@@ -260,3 +260,140 @@ If ngModel is used within a form tag, either the name attribute must be set or t
 ```
 
 *****
+
+## ●Router路由與SPA網站
+Router主要設定spa單一頁面網站，讓使用者更好體驗且頁面切換更順暢<br />
+在ts檔裡看到url很長或者要改上很多路徑，可以增加moduleId:module.id，讓他默認相同目錄或層級<br />
+路徑就不用打很長~<br />
+```
+templateUrl: 'home.component.html',
+styleUrls: ['home.component.css']
+```
+
+Router.ts 專門控管路由相關連結，雖然可以增加在app.module.ts，但為了避免複雜分開管理會比較好<br />
+```{path:'home',component:HomeComponent},```  形成一個套件<br />
+
+完成router.ts後，到app.module.ts引入routerModule<br />
+在html寫進ng2專屬路徑 "['/watch’]”等於自己設定router path<br />
+```
+<a [routerLink] = "['/watch']">觀看</a>
+```
+按下滑鼠的連接，把設定好的comp丟進<router-outlet>裡面<br />
+```
+<div>
+  <router-outlet></router-outlet>
+</div>
+```
+
+另外回到”主要的html”(EX:index.html)在前面增加<base href="/"> 讓router有基本宣告，詳細原因見Angular 2 __ 實戰_進階開發篇.pdf<br />
+
+目前有遇到一個問題，在增加routerModule的時候，會出現錯誤，目前解決辦法是關掉重新npm start，但試了幾次才會沒有錯誤＠＠<br />
+
+npm run build  與 ng build 有差異  詳細請見指令<br />
+1.Npm後面可以加參數<br />
+2.另外再執行 npm run build 有發現insert()不能用，錯誤訊息用，cmd+c滑鼠點擊，會到錯誤的程式碼<br />
+3.npm run build ， 在指令有紀錄build出來的js和css，代表會執行這些<br />
+
+*****
+
+## ●子路由與路由參數
+```
+{path:'**',component:WatchComponent}
+```
+“**” 兩個星星為所有網址匹配，一般都套用404頁面...等<br />
+另外注意！！！ 這邊網址都是有“順序性”的，像是進來網址會先匹配第一個
+```
+{path:'', redirectTo:'/home', pathMatch:'full'}, 
+```
+若把```{path:'**',component:HomeComponent}```搬到前面第一個，就會造成無限迴圈，亂打網址還是有東西，所以（”**”）萬用路由一定要放在最後一個，(“ ”)預設路由盡量放在第一個<br />
+
+子路由主要是想要自己的子路由，裡面有個選單或分頁的功能<br />
+先指定第一層是哪個資料夾，將第二層children寫在底下 ，在path後面逗號，增加
+```
+children:[
+            {path:'back',component:BackComponent},
+            {path:'connect',component:ConnectComponent},
+         ]
+```
+告訴此路由有子路由 <br />
+然後要注意在寫路徑的時候，因為我們是在第二層，第一層路徑必須加上去<br />
+```
+<a [routerLink]=“[‘/watch/back’]”>第一個選單</a>
+```
+
+＃＃討論區文章，每個文章用參數去綁定
+ ```
+{path:':connect',component:ConnectComponent},
+```
+Path裡面加一個“：”變成參數型態 <br />
+
+```this.id = par["connect"];``` 裡面的connect為```{path:':connect',component:ConnectComponent},```
+裡面的connect，所以在更改名稱，兩個要一起改<br /> 
+接受過來就是this.id =0，0就是路徑給參數<br />
+
+```
+{path:'', redirectTo:'/home', pathMatch:'full'},
+```
+redirectTo指定要導向哪一個，pathMatch屬性伴隨著redirectTo<br />
+
+增加routerLinkActive，讓路由連接套用active樣式<br />
+```
+<a [routerLink] = "['/home']" routerLinkActive="active">首頁</a>
+```
+
+Router路由包含參數及routerLinkActive...等詳細解說,
+### 可以查看Angular 2 __ 實戰_進階開發篇.pdf 
+
+*****
+
+## ●表單驗證(reactive forms)
+把驗證邏輯寫在ts，好處比較好測試，因為ts可以知道程式碼有沒有錯誤，另外好處動態驗證表單容易<br />
+acc:['',[Validators.required]],  第一參數要不要放初始值，第二參數放驗證<br />
+
+<form [formGroup]="form">裡面的form 在ts已建立變數做成綁定<br />
+```<input type="text" class="form-control" formControlName="acc"> ```利用formControlName屬性做綁定，裡面的acc就是在ts已宣告
+
+★動態驗證表單
+各自的form有各自的驗證<br />
+```
+<div *ngFor="let item of form.controls; let i=index " [formGroupName]= "i"> 
+```
+[formGroupName]將一個表單變成一組<br />
+
+*****
+
+## ●angular cli 與打包
+angular cli 指令:<br />
+https://github.com/angular/angular-cli<br />
+在angular cli裡面看到outdid，裡面dist可以寫進你想打包的位置<br />
+```
+"outDir": "dist", ====>
+"outDir": "../Test/vu",
+```
+打包的檔案丟進伺服器或者apach，輸入localhost/AAA 就可以了<br />
+在angular cli裡面assets可以放進想要打包的檔案<br />
+
+*****
+
+## ●http& proxy
+下面有串接api範例視頻：<br />
+https://www.youtube.com/watch?v=TH7NDIjYktU&index=33&list=PLneJIGUTIItvda1H2PtArRwhjWvM1D7da<br />
+```
+import { Http } from '@angular/http';
+import 'rxjs/Rx'
+
+data: any;
+   constructor(private http: Http){
+
+   }
+
+ ngOnInit() {
+   this.http.get('api/xxx/xxx').map(res=>res.json()).subscribe(
+     data =>{
+      this.data=data;
+      console.log("http來的");
+     })
+ }
+```
+★Proxy json創造以及ng serve 去pugin代理後端網址<br />
+https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md
