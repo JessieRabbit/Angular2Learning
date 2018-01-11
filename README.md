@@ -3,6 +3,10 @@
 https://angular.cn/guide/architecture<br />
 https://www.youtube.com/watch?v=te5agERE-JY&list=PLneJIGUTIItvda1H2PtArRwhjWvM1D7da<br />
 https://www.codeschool.com/courses/shaping-up-with-angular-js<br />
+★Ng速查表(注入 裝飾器 指令)<br />
+https://angular.cn/guide/cheatsheet<br />
+★angular cli 指令<br />
+https://github.com/angular/angular-cli<br />
 ```
 ng g c test2 
 ```
