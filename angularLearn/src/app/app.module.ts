@@ -12,6 +12,8 @@ import { TruncatePipe } from './truncate.pipe';
 import { BookService } from './book/book.service';
 import { HomeComponent } from './home/home.component';
 import { WatchComponent } from './watch/watch.component';
+import { BackComponent } from './watch/back/back.component';
+import { ConnectComponent } from './watch/connect/connect.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { WatchComponent } from './watch/watch.component';
     TruncatePipe,
     HomeComponent,
     WatchComponent,
+    BackComponent,
+    ConnectComponent,
   ],
   imports: [
     BrowserModule,
