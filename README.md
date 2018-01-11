@@ -7,6 +7,8 @@ https://www.codeschool.com/courses/shaping-up-with-angular-js<br />
 https://angular.cn/guide/cheatsheet<br />
 ★angular cli 指令<br />
 https://github.com/angular/angular-cli<br />
+★angular js codeStyle<br />
+https://github.com/pixnet/frontend-guideline/wiki/AngularJS-Style
 ```
 ng g c test2 
 ```
