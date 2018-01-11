@@ -45,7 +45,7 @@ ng g c test2
 *****
 
 ## ●ngif與hidden
-★ngIf
+★ngIf`
 ```
 *ngIf="edit"
 ```
@@ -189,6 +189,8 @@ delete(i:number){
 ## ●ngSwitch
 簡單來說就像switch...case程式<br />
 
+*****
+
 ## ●管道與pipe
 某種東西需要格式化ＥＸ：日期<br />
 內建管道api參考網址：<br />
@@ -204,3 +206,57 @@ format為“date：‘....’”
 ```
 {{ (items.date | date:'y')-1911}}{{ items.date | date:'-MM-dd' | lowercase}}
 ```
+
+*****
+
+## ●自定義管道
+Pipe與comp不一樣位置，所以一開始在html抓取pipe會有錯誤，為了讓兩個可以互相有聯繫 ，必須到inport新增剛新增的
+Pipe檔
+```
+transform(value: any, args?: any): any {
+    return null;
+  }
+```
+將items.date丟進date:'-MM-dd’管道，跑進transform裡面的value 做一些判斷...等(以下程式敘述)
+```
+{{ items.date | date:'-MM-dd’}}
+```
+另外args?: any為參數接收位置 ＥＸ：```{{ (items.date | date:'y')-1911}}```
+裡面的date:'y' 後面可以接參數 ＥＸ：```date: choose``` choose在ts有宣告 ，transform裡面可以更改變數型態(以下程式敘述)
+```
+transform(value: number, args: string): any {
+    return null;
+  }
+```
+## 管道相當好用，可以用於篩選資料或者類別篩選
+
+★附录：没有FilterPipe或者OrderByPipe 參考此頁的最後
+https://angular.cn/guide/pipes
+
+*****
+
+## ●表單驗證(Templete -  driven forms)
+通常用於防呆或者給使用者提示<br />
+Templete driven<br />
+ngForm提供很多表單驗證
+```
+<form #myForm="ngForm">
+``` 
+在想要的欄位，增加ngModel這樣ng就會知道此欄位要做驗證，另外要注意增加的時候還必須加上name
+``` 
+<input type="text" class="form-control" ngModel name="acc">
+```
+錯誤訊息
+```
+If ngModel is used within a form tag, either the name attribute must be set or the form
+```
+增加Ｈ5 required 驗證判斷(以下程式敘述)
+```
+<input type="text" class="form-control" ngModel name="acc" required>
+```
+利用屬性（ [disabled] = "myForm.invalid"）或者其他綁定，做出防呆功能(以下程式敘述)
+```
+<button type="button" class="btn btn-success" [disabled] = "myForm.invalid">送出</button>
+```
+
+*****
