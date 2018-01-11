@@ -1,6 +1,7 @@
 import { BookService } from './book/book.service';
 import { IBook } from './book/book';
 import { Component , OnInit} from '@angular/core';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,9 @@ import { Component , OnInit} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  // ngOnInit(){
-  //   console.log('init');
-  // }
+  ngOnInit(){
+    console.log('init');
+  }
   // ngOnChanges(){
   //   console.log('new change detected');
   // }
@@ -58,7 +59,8 @@ export class AppComponent implements OnInit {
   //   this.books = _bookService.getBook();
   // }
 
-  errorMessage:string;
+  //此註解掉是沒問題的程式 因constructor只能有一個
+  /*errorMessage:string;
   constructor(private _bookService:BookService){}
   ngOnInit(){
     this.getBooks()
@@ -70,10 +72,43 @@ export class AppComponent implements OnInit {
       books => this.books=books,
       error => this.errorMessage = <any>error
     );
-  }
+  }*/
 
   //表單驗證
   see(f:any){
     console.log(f);
   }
+
+  //表單驗證reactive
+  // form:FormGroup;
+  form:FormArray;
+
+  data = [
+    { acc: "aaa",tel: "123456" },
+    { acc: "bbb",tel: "123456" },
+    { acc: "ccc",tel: "123456" },
+    { acc: "ddd",tel: "123456" },
+    { acc: "eee",tel: "123456" },
+  ]
+
+  constructor(private fb: FormBuilder){
+    // this.form = this.fb.group({
+    //   acc:['',[Validators.required]],
+    //   tel:['',[Validators.required , Validators.minLength(7) , Validators.pattern("[0-9]*")]]
+    // })
+      this.form = this.fb.array([]);
+      this.data.forEach(element => {
+        this.form.push(
+          this.fb.group({
+            acc:[element.acc,[Validators.required]],
+            tel:[element.tel,[Validators.required , Validators.minLength(7) , Validators.pattern("[0-9]*")]]
+          })
+        )
+      });
+  }
+  seeGroup(f:any){
+    console.log(this.form);
+  }
+
+
 }

@@ -2,17 +2,19 @@
 <!-- router -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div>
-      <ul>
-        <li>
-          <a [routerLink] = "['/home']" routerLinkActive="active">首頁</a>
-        </li>
-        <li>
-          <a [routerLink] = "['/watch']" routerLinkActive="active">觀看</a>
-        </li>
-      </ul>
-  </div>  
+    <ul>
+      <li>
+        <a [routerLink]="['/home']" routerLinkActive="active">首頁</a>
+      </li>
+      <li>
+        <a [routerLink]="['/watch']" routerLinkActive="active">觀看</a>
+      </li>
+    </ul>
+  </div>
 </nav>
-<br><br><br>
+<br>
+<br>
+<br>
 <div>
   <router-outlet></router-outlet>
 </div>
@@ -48,7 +50,7 @@
     <tbody>
       <tr *ngFor="let items of cpu; let i=index;">
         <td>
-            {{ (items.date | date:'y')-1911}}{{ items.date | date:'-MM-dd' | lowercase}}
+          {{ (items.date | date:'y')-1911}}{{ items.date | date:'-MM-dd' | lowercase}}
         </td>
         <td>
           <div *ngIf="!items.edit">
@@ -86,7 +88,7 @@
   </table>
 
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-  <h2>{{ showMessage }}</h2> 
+  <h2>{{ showMessage }}</h2>
   <app-welcome [reviews]="rabbit" (notify)="onNotifyClicked($event)"></app-welcome>
   <!-- {{ books[0].bookTitle }}
   {{ books[0].bookAuthor }}
@@ -105,7 +107,8 @@
     <li> {{ book.starRating }}</li>
   </div> -->
 
-  <div class="container">
+  <!-- 範本表單 -->
+  <!-- <div class="container">
     <form #myForm="ngForm">
         <div class="form-group">
             <label>帳號</label>
@@ -125,12 +128,36 @@
     </form>
 
     <pre>{{ tel.errors | json }}</pre>
+  </div> -->
+
+  <!-- 模型表單 -->
+  <div class="container">
+    <form [formGroup]="form">
+      <div *ngFor="let item of form.controls; let i=index " [formGroupName]= "i"> 
+        <div class="form-group">
+          <label>帳號</label>
+          <input type="text" class="form-control" formControlName="acc">
+        </div>
+        <div class="form-group">
+          <label>電話</label>
+          <input type="text" class="form-control" formControlName="tel">
+        </div>
+        <div style="color:red;" *ngIf="item.controls.tel.errors && item.controls.tel.touched">
+          <div *ngIf="item.controls.tel.errors.required">必填</div>
+          <div *ngIf="item.controls.tel.errors.minlength">長度不小於7</div>
+          <div *ngIf="item.controls.tel.errors.pattern">格式不符合</div>
+        </div>
+        <button type="button" class="btn btn-success" [disabled]="item.invalid">送出</button>
+        <button type="button" (click)="seeGroup()">查看</button>
+      </div>
+    </form>
+
   </div>
 
   <table border="1" *ngFor="let book of books">
     <tr>
       <th>Firstname</th>
-      <th>Lastname</th> 
+      <th>Lastname</th>
       <th>Age</th>
       <th>Age</th>
       <th>Age</th>
@@ -153,8 +180,5 @@
       <th> {{ book.starRating }}</th>
     </tr>
   </table>
-  
+
 </div>
-
-
-
