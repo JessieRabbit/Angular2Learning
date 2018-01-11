@@ -7,12 +7,12 @@ import { Component , Input , Output , EventEmitter} from '@angular/core';
 })
 export class WelcomeComponent{
   pageTitle:string = "Welcome";
-  imageURL="/assets/images/rabbut.png";
-
+  imageURL: string = "assets/images/rabbit.png";
   @Input() reviews:number;
   @Output() notify:EventEmitter<string> = new EventEmitter<string>();
 
   onClick():void{
     this.notify.emit('Message from child');
   }
+
 }
