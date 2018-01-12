@@ -1,7 +1,8 @@
 import { BookService } from './book/book.service';
 import { IBook } from './book/book';
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit , ViewChild} from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @Component({
   selector: 'app-root',
@@ -108,6 +109,21 @@ export class AppComponent implements OnInit {
   }
   seeGroup(f:any){
     console.log(this.form);
+  }
+
+  //input output 再度練習
+  outMessage="";
+
+  @ViewChild(WelcomeComponent)
+  private ch_ts:WelcomeComponent;
+
+  right(){
+    this.ch_ts.right();
+  }
+
+  left(){
+    this.ch_ts.left();
+
   }
 
 
