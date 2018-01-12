@@ -403,3 +403,49 @@ data: any;
 ```
 ★Proxy json創造以及ng serve 去pugin代理後端網址<br />
 https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md
+
+*****
+
+## ●input與output 和 父與子comp溝通<br />
+input與output建立窗口，讓父與子comp做溝通<br />
+應用output的時候，也必須impot EventEmitter<br />
+```
+this.onMessage.emit("");
+```
+Emit為彈射<br />
+```
+(onMessage)="outMessage=$event"
+```
+觸發子物件onMessage事件，父物件outMessage接入$event事件<br />
+
+★如何父物件呼叫子物件函式（ＨＴＭＬ）
+```
+<app-welcome [number]="toChild" (onMessage)="outMessage=$event" #ch></app-welcome>
+```
+將父物件的tag裡宣告部分變數#ch
+```
+<button (click)="ch.right()">增加</button>
+```
+然好再針對宣告變數直接“.”抓取子物件裡面的函式<br />
+
+★如何父物件呼叫子物件函式（ＴＳ）
+在父物件 Import viewchild<br />
+```@ViewChild(WelcomeComponent)``` 關聯起來，若沒有這個，留下面的code並沒有關連起來<br />
+```
+ private ch_ts:WelcomeComponent;
+```
+主要應付大部分父與子相互呼叫與抓值...等<br />
+
+*****
+
+## ●Service與服務
+把一些服務邏輯放在Service，而ts單純寫程式邏輯ＥＸ：怎麼取資料<br />
+非同步取資料<br />
+像是有些共用service可以提出來，comp大家都可以取用共用的service<br />
+想要把程式更精簡或者訂閱不想放在ts可以在html dom加上async的pipe，要注意加上這個前面的data一定要是Obserable物件，此data|async做訂閱管理，這樣<br />就不用寫上subscribe函式(參考影片教學)<br />
+```
+<tr *ngFor=“let item of data|async”>
+```
+
+## ●Route&Resolve與預先載入 (影片23後 都是遇到才會用得到的功能，前面都是ng必備不可或缺的)<br />
+預先載入：為在按下按鈕的前一刻，把資料載完或是將非同步的的東西載入進來後，才會顯示頁面（讓使用者有更好的體驗）
