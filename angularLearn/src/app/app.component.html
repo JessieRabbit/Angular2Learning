@@ -19,6 +19,12 @@
   <router-outlet></router-outlet>
 </div>
 
+<!-- ngrx -->
+<p>Counter怪怪的: {{ counter$ | async }}</p>
+<button (click)="increment()">Increment</button>
+<button (click)="decrement()">Decrement</button>
+<button (click)="reset()">Reset</button>
+
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
@@ -103,7 +109,7 @@
   <button (click)="left()">減少</button>
 
   <app-welcome [number]="toChild" (onMessage)="outMessage=$event" ></app-welcome>
-  <app-welcome [reviews]="rabbit" (notify)="onNotifyClicked($event)"></app-welcome>
+  <!-- <app-welcome [reviews]="rabbit" (notify)="onNotifyClicked($event)"></app-welcome> -->
   <!-- {{ books[0].bookTitle }}
   {{ books[0].bookAuthor }}
   {{ books[0].bookPrice }} -->
@@ -145,7 +151,7 @@
   </div> -->
 
   <!-- 模型表單 -->
-  <div class="container">
+  <!-- <div class="container">
     <form [formGroup]="form">
       <div *ngFor="let item of form.controls; let i=index " [formGroupName]= "i"> 
         <div class="form-group">
@@ -166,7 +172,7 @@
       </div>
     </form>
 
-  </div>
+  </div> -->
 
   <table border="1" *ngFor="let book of books">
     <tr>

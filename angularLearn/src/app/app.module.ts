@@ -14,6 +14,10 @@ import { HomeComponent } from './home/home.component';
 import { WatchComponent } from './watch/watch.component';
 import { BackComponent } from './watch/back/back.component';
 import { ConnectComponent } from './watch/connect/connect.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './stores/counter/counter.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 
 @NgModule({
@@ -32,7 +36,9 @@ import { ConnectComponent } from './watch/connect/connect.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(counterReducer),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

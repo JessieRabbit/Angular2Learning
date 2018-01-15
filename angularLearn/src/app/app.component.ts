@@ -3,6 +3,11 @@ import { IBook } from './book/book';
 import { Component , OnInit , ViewChild} from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import { CounterState } from './stores/counter/counter.store';
+import { DECREMENT, INCREMENT, RESET } from './stores/counter/counter.action';
+
 
 @Component({
   selector: 'app-root',
@@ -26,7 +31,7 @@ export class AppComponent implements OnInit {
 
 
   cpu=[
-    { date:new Date(),name:"123",price:"9811",rank:1  },
+    { date:new Date(),name: "123",price:"9811",rank:1  },
     { date:new Date(),name:"123",price:"9811",rank:2  },
     { date:new Date(),name:"123",price:"9811",rank:3  },
   ];
@@ -60,7 +65,7 @@ export class AppComponent implements OnInit {
   //   this.books = _bookService.getBook();
   // }
 
-  //此註解掉是沒問題的程式 因constructor只能有一個
+  // 此註解掉是沒問題的程式 因constructor只能有一個
   /*errorMessage:string;
   constructor(private _bookService:BookService){}
   ngOnInit(){
@@ -75,14 +80,15 @@ export class AppComponent implements OnInit {
     );
   }*/
 
-  //表單驗證
+  // 表單驗證
   see(f:any){
     console.log(f);
   }
 
-  //表單驗證reactive
+  // 表單驗證reactive
   // form:FormGroup;
-  form:FormArray;
+  // tslint:disable-next-line:member-ordering
+  form: FormArray;
 
   data = [
     { acc: "aaa",tel: "123456" },
@@ -92,7 +98,7 @@ export class AppComponent implements OnInit {
     { acc: "eee",tel: "123456" },
   ]
 
-  constructor(private fb: FormBuilder){
+  /*constructor(private fb: FormBuilder){
     // this.form = this.fb.group({
     //   acc:['',[Validators.required]],
     //   tel:['',[Validators.required , Validators.minLength(7) , Validators.pattern("[0-9]*")]]
@@ -106,16 +112,16 @@ export class AppComponent implements OnInit {
           })
         )
       });
-  }
+  }*/
   seeGroup(f:any){
     console.log(this.form);
   }
 
-  //input output 再度練習
-  outMessage="";
+  // input output 再度練習
+  outMessage='';
 
   @ViewChild(WelcomeComponent)
-  private ch_ts:WelcomeComponent;
+  private ch_ts: WelcomeComponent;
 
   right(){
     this.ch_ts.right();
@@ -124,6 +130,35 @@ export class AppComponent implements OnInit {
   left(){
     this.ch_ts.left();
 
+  }
+
+  //ngrx練習
+  counter$: Observable<number>;
+
+  constructor(private store: Store<CounterState>) {
+    this.counter$ = store.select('counter');
+  }
+
+  increment() {
+    this.store.dispatch({
+      type: INCREMENT,
+      payload: {
+        value: 1
+      }
+    });
+  }
+
+  decrement() {
+    this.store.dispatch({
+      type: DECREMENT,
+      payload: {
+        value: 1
+      }
+    });
+  }
+
+  reset() {
+    this.store.dispatch({type: RESET});
   }
 
 
