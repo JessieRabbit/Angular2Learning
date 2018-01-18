@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './back.component.html',
   styleUrls: ['./back.component.css']
 })
-export class BackComponent{
+export class BackComponent {
 
-  //api串接 
+  // api串接
   // data: any;
   //  constructor(private http: Http){
 
@@ -22,13 +22,13 @@ export class BackComponent{
   //       console.log("http來的");
   //      })
   //  }
-   datas = [
-     {text: "2"},
-     {text: "3"},
-     {text: "4"},
-     {text: "5"},
-     {text: "6"},
+  datas = [
+    { text: '2' },
+    { text: '3' },
+    { text: '4' },
+    { text: '5' },
+    { text: '6' },
 
-   ];
+  ];
 
 }

@@ -1,6 +1,7 @@
+import { SharedModule } from './Shared/Shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './router';
 
@@ -18,6 +19,8 @@ import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './stores/counter/counter.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -34,11 +37,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    // HttpModule,
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(counterReducer),
     StoreDevtoolsModule.instrument(),
+    BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

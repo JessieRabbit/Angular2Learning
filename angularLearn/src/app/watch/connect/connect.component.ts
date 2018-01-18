@@ -1,4 +1,4 @@
-import { Component, OnInit , OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -14,14 +14,13 @@ export class ConnectComponent implements OnInit, OnDestroy {
   constructor(private routePar: ActivatedRoute) { }
 
   ngOnInit() {
-    this.ss = this.routePar.params.subscribe(par=>
-    {
-      this.id = par["connect"];
-      this.num = parseInt(par["connect"]);
+    this.ss = this.routePar.params.subscribe(par => {
+      this.id = par[' connect'];
+      // this.num = parseInt(par['connect']);;
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.ss.unsubscribe();
   }
 }

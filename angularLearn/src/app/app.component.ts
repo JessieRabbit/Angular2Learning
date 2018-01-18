@@ -1,12 +1,13 @@
 import { BookService } from './book/book.service';
 import { IBook } from './book/book';
-import { Component , OnInit , ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { CounterState } from './stores/counter/counter.store';
 import { DECREMENT, INCREMENT, RESET } from './stores/counter/counter.action';
+import { Console } from '@angular/core/src/console';
 
 
 @Component({
@@ -15,25 +16,31 @@ import { DECREMENT, INCREMENT, RESET } from './stores/counter/counter.action';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  ngOnInit(){
+  ngOnInit() {
     console.log('init');
   }
   // ngOnChanges(){
   //   console.log('new change detected');
   // }
+  // tslint:disable-next-line:member-ordering
   title = 'app';
+  // tslint:disable-next-line:member-ordering
   rabbit = 30;
 
-  //重複顯示與ngfor
-  name="";
-  price="";
-  rank:number;
+  // 重複顯示與ngfor
+  // tslint:disable-next-line:member-ordering
+  name = '';
+  // tslint:disable-next-line:member-ordering
+  price = '';
+  // tslint:disable-next-line:member-ordering
+  rank: number;
 
 
-  cpu=[
-    { date:new Date(),name: "123",price:"9811",rank:1  },
-    { date:new Date(),name:"123",price:"9811",rank:2  },
-    { date:new Date(),name:"123",price:"9811",rank:3  },
+  // tslint:disable-next-line:member-ordering
+  cpu = [
+    { date: new Date(), name: '123', price: '9811', rank: 1 },
+    { date: new Date(), name: '123', price: '9811', rank: 2 },
+    { date: new Date(), name: '123', price: '9811', rank: 3 },
   ];
 
   /*insert(){
@@ -44,7 +51,7 @@ export class AppComponent implements OnInit {
     this.cpu.splice(i,1);
   }*/
 
-  //ngSwitch
+  // ngSwitch
   // edit = false;
   // fun=[
   //   {name:"台灣",precent:"100",rank:0},
@@ -52,15 +59,19 @@ export class AppComponent implements OnInit {
   //   {name:"倫敦",precent:"900",rank:5}
   // ];
 
-  dateString=new Date();
-  Description="123456789010223423224243442";
+  // tslint:disable-next-line:member-ordering
+  dateString = new Date();
+  // tslint:disable-next-line:member-ordering
+  Description = '123456789010223423224243442';
 
-  showMessage:string="test";
-  onNotifyClicked(message:string):void{
-    this.showMessage=message;
+  // tslint:disable-next-line:member-ordering
+  showMessage = 'test';
+  onNotifyClicked(message: string): void {
+    this.showMessage = message;
   }
 
-  books:IBook[];
+  // tslint:disable-next-line:member-ordering
+  books: IBook[];
   // constructor(private _bookService:BookService){
   //   this.books = _bookService.getBook();
   // }
@@ -81,7 +92,7 @@ export class AppComponent implements OnInit {
   }*/
 
   // 表單驗證
-  see(f:any){
+  see(f: any) {
     console.log(f);
   }
 
@@ -90,13 +101,14 @@ export class AppComponent implements OnInit {
   // tslint:disable-next-line:member-ordering
   form: FormArray;
 
+  // tslint:disable-next-line:member-ordering
   data = [
-    { acc: "aaa",tel: "123456" },
-    { acc: "bbb",tel: "123456" },
-    { acc: "ccc",tel: "123456" },
-    { acc: "ddd",tel: "123456" },
-    { acc: "eee",tel: "123456" },
-  ]
+    { acc: 'aaa', tel: '123456' },
+    { acc: 'bbb', tel: '123456' },
+    { acc: 'ccc', tel: '123456' },
+    { acc: 'ddd', tel: '123456' },
+    { acc: 'eee', tel: '123456' },
+  ];
 
   /*constructor(private fb: FormBuilder){
     // this.form = this.fb.group({
@@ -113,26 +125,29 @@ export class AppComponent implements OnInit {
         )
       });
   }*/
-  seeGroup(f:any){
+  seeGroup(f: any) {
     console.log(this.form);
   }
 
   // input output 再度練習
-  outMessage='';
+  // tslint:disable-next-line:member-ordering
+  outMessage = '';
 
+  // tslint:disable-next-line:member-ordering
   @ViewChild(WelcomeComponent)
   private ch_ts: WelcomeComponent;
 
-  right(){
+  right() {
     this.ch_ts.right();
   }
 
-  left(){
+  left() {
     this.ch_ts.left();
 
   }
 
-  //ngrx練習
+  // ngrx練習
+  // tslint:disable-next-line:member-ordering
   counter$: Observable<number>;
 
   constructor(private store: Store<CounterState>) {
@@ -142,23 +157,17 @@ export class AppComponent implements OnInit {
   increment() {
     this.store.dispatch({
       type: INCREMENT,
-      payload: {
-        value: 1
-      }
     });
   }
 
   decrement() {
     this.store.dispatch({
       type: DECREMENT,
-      payload: {
-        value: 1
-      }
     });
   }
 
   reset() {
-    this.store.dispatch({type: RESET});
+    this.store.dispatch({ type: RESET });
   }
 
 

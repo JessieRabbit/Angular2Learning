@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: 'watch.component.html',
   styleUrls: ['watch.component.css']
 })
-export class WatchComponent{
-
-
+export class WatchComponent {
 }

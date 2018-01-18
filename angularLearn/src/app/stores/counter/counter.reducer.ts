@@ -1,21 +1,25 @@
-import {CounterState, INITIAL_COUNTER_STATE} from './counter.store';
-import {DECREMENT, INCREMENT, RESET} from './counter.action';
-import {Action} from '@ngrx/store';
+import { CounterState, INITIAL_COUNTER_STATE } from './counter.store';
+import { DECREMENT, INCREMENT, RESET } from './counter.action';
+import { Action } from '@ngrx/store';
 
-export function counterReducer(state: CounterState = INITIAL_COUNTER_STATE, action: any): CounterState {
-  const {type, payload} = action;
-
+export function counterReducer(state: CounterState = INITIAL_COUNTER_STATE, action: Action) {
+  const { type } = action;
+  console.log('HAHA');
   switch (type) {
     case INCREMENT:
-      return {...state, counter: state.counter + payload.value};
+      console.log('+');
+      return { ...state, counter: state.counter + 1 };
 
     case DECREMENT:
-      return {...state, counter: state.counter - payload.value};
+      console.log('-');
+      return { ...state, counter: state.counter - 1 };
 
     case RESET:
+      console.log('reset');
       return INITIAL_COUNTER_STATE;
 
     default:
+      console.log('default');
       return state;
   }
 }
