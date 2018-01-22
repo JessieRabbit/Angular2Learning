@@ -18,7 +18,7 @@
 <div>
   <router-outlet></router-outlet>
 </div>
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- ngrx -->
 <p>Counter怪怪的: {{ counter$ | async }}</p>
 <button (click)="increment()">Increment</button>
@@ -96,7 +96,7 @@
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
   <h2>{{ showMessage }}</h2>
   想兔父親
-  <input [(ngModel)]="inputText"/>
+  <input [(ngModel)]="inputText" />
   <button (click)="toChild=inputText">點擊</button>
   <div>
     {{ outMessage }}
@@ -108,7 +108,7 @@
   <button (click)="right()">增加</button>
   <button (click)="left()">減少</button>
 
-  <app-welcome [number]="toChild" (onMessage)="outMessage=$event" ></app-welcome>
+  <app-welcome [number]="toChild" (onMessage)="outMessage=$event"></app-welcome>
   <!-- <app-welcome [reviews]="rabbit" (notify)="onNotifyClicked($event)"></app-welcome> -->
   <!-- {{ books[0].bookTitle }}
   {{ books[0].bookAuthor }}
