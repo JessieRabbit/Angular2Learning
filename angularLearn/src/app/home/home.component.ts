@@ -9,9 +9,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public startDate = new Date();
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    console.log(this.startDate);
     this.matIconRegistry.addSvgIconInNamespace(
       'custom-svg',
       'angular',

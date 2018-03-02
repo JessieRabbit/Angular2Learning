@@ -1,6 +1,11 @@
 <p>
   home works!
 </p>
+<mat-form-field>
+  <input matInput [matDatepicker]="dp" placeholder="Different locale">
+  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+  <mat-datepicker #dp [startAt]="startDate"></mat-datepicker>
+</mat-form-field>
 <br>
 <img src="/assets/images/home.png" />
 <button mat-raised-button color="primary">rabbit</button>
