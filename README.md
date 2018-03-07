@@ -449,3 +449,12 @@ Emit為彈射<br />
 
 ## ●Route&Resolve與預先載入 (影片23後 都是遇到才會用得到的功能，前面都是ng必備不可或缺的)<br />
 預先載入：為在按下按鈕的前一刻，把資料載完或是將非同步的的東西載入進來後，才會顯示頁面（讓使用者有更好的體驗）
+
+# Rxjs 學習網<br />
+●rxjs operator sample<br />
+https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35<br />
+●rxjs 針對不同情境下的使用狀況範例說明<br />
+http://reactive.how/<br />
+●https://blog.techbridge.cc/2017/12/08/rxjs/<br />
+●30天<br />
+https://ithelp.ithome.com.tw/users/20103367/ironman/1199<br />
