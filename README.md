@@ -451,6 +451,8 @@ Emit為彈射<br />
 預先載入：為在按下按鈕的前一刻，把資料載完或是將非同步的的東西載入進來後，才會顯示頁面（讓使用者有更好的體驗）
 
 # Rxjs 學習網<br />
+●rxjs 官網<br />
+http://reactivex.io/<br />
 ●rxjs operator sample<br />
 https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35<br />
 ●rxjs 針對不同情境下的使用狀況範例說明<br />
@@ -458,3 +460,5 @@ http://reactive.how/<br />
 ●https://blog.techbridge.cc/2017/12/08/rxjs/<br />
 ●30天<br />
 https://ithelp.ithome.com.tw/users/20103367/ironman/1199<br />
+●rxjs operator 常用（簡）<br />
+https://hao5743.github.io/2017/03/07/RxJs%E5%B8%B8%E7%94%A8Operator%E8%AE%B0%E5%BD%95/
