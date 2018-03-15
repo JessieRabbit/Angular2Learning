@@ -464,3 +464,14 @@ https://ithelp.ithome.com.tw/users/20103367/ironman/1199<br />
 https://hao5743.github.io/2017/03/07/RxJs%E5%B8%B8%E7%94%A8Operator%E8%AE%B0%E5%BD%95/<br />
 ●rxjs Marble diagrams<br />
 http://rxmarbles.com/<br />
+
+
+# angular 效能 <br />
+Use trackBy option for *ngFor directive<br />
+如果有使用 ngFor 的時候要加上 trackBy: 通常是用 ID 或是 Key<br />
+不然的話他會用整個物件去判斷<br />
+https://github.com/mgechev/angular-performance-checklist#use-trackby-option-for-ngfor-directive<br />
+中文解說<br />
+https://dotblogs.com.tw/explooosion/2017/04/29/035512<br />
+
+
