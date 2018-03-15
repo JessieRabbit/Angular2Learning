@@ -461,6 +461,6 @@ http://reactive.how/<br />
 ●30天<br />
 https://ithelp.ithome.com.tw/users/20103367/ironman/1199<br />
 ●rxjs operator 常用（簡）<br />
-https://hao5743.github.io/2017/03/07/RxJs%E5%B8%B8%E7%94%A8Operator%E8%AE%B0%E5%BD%95/
+https://hao5743.github.io/2017/03/07/RxJs%E5%B8%B8%E7%94%A8Operator%E8%AE%B0%E5%BD%95/<br />
 ●rxjs Marble diagrams<br />
-http://rxmarbles.com/
+http://rxmarbles.com/<br />
