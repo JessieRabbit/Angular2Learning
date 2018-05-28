@@ -3,7 +3,7 @@ import { IBook } from './book/book';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { CounterState } from './stores/counter/counter.store';
 import { DECREMENT, INCREMENT, RESET } from './stores/counter/counter.action';

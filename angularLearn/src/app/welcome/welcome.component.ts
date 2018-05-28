@@ -1,4 +1,4 @@
-import { query } from '@angular/core/src/animation/dsl';
+// import { query } from '@angular/core/src/animation/dsl';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
