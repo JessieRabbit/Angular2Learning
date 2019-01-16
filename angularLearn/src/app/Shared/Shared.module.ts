@@ -8,6 +8,8 @@ import {
   MatMomentDateModule
 } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+// import { HttpClientModule } from '@angular/common/http';
 
 export const TW_FORMATS = {
   parse: {
@@ -31,7 +33,9 @@ export const TW_FORMATS = {
     MatFormFieldModule,
     MatInputModule,
     // MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    ScrollDispatchModule,
+    // HttpClientModule,
   ],
   exports: [
     MatButtonModule,
@@ -43,6 +47,7 @@ export const TW_FORMATS = {
     MatInputModule,
     // MatNativeDateModule,
     MatMomentDateModule,
+    ScrollDispatchModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'zh-TW' },

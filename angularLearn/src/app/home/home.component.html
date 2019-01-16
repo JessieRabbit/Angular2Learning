@@ -1,6 +1,28 @@
 <p>
   home works!
 </p>
+
+<h1>
+  welcome to {{ title }}
+</h1>
+
+<h2>
+  {{ hi('Jessie') }}
+</h2>
+
+<h3>
+  {{ getData().response.data }}
+</h3>
+
+<h4>
+  {{ getTitle() }}
+  {{ testvalue }}
+</h4>
+
+<h5>
+  {{ getAngular() }}
+</h5>
+
 <mat-form-field>
   <input matInput [matDatepicker]="dp" placeholder="Different locale">
   <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
@@ -43,3 +65,35 @@
 <div>
   <mat-icon svgIcon="custom-svg:angular"></mat-icon>
 </div>
+
+<!-- angular v7  virtual scoll -->
+<div style="background-color:pink;">angular v7 virtual scoll</div>
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+  <div *cdkVirtualFor="let item of items; templateCacheSize: 0" class="example-item">{{item}}</div>
+</cdk-virtual-scroll-viewport>
+
+<cdk-virtual-scroll-viewport class="example-viewport" itemSize="60">
+  <dl class="example-dl">
+    <ng-container *cdkVirtualFor="let state of states">
+      <dt class="example-dt">{{state.name}}</dt>
+      <dd class="example-dd">{{state.capital}}</dd>
+    </ng-container>
+  </dl>
+</cdk-virtual-scroll-viewport>
+
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+    </tr>
+  </thead>
+  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <tbody *cdkVirtualFor="let item of items" class="example-item">
+      <tr>
+        <td>{{item}}</td>
+      </tr>
+    </tbody>
+  </cdk-virtual-scroll-viewport>
+</table>
+<br />
+<div style="background-color:pink;">==================================================</div>
