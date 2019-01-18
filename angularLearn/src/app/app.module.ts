@@ -22,6 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
+import { UdemyTestComponent } from './udemy-test/udemy-test.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     WatchComponent,
     BackComponent,
     ConnectComponent,
+    UdemyTestComponent,
   ],
   imports: [
     BrowserModule,

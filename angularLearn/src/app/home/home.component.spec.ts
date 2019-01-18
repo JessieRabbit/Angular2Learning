@@ -1,7 +1,8 @@
+import { BookService } from './../book/book.service';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './../Shared/Shared.module';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { MockData } from './mock-data';
@@ -12,6 +13,8 @@ describe('HomeComponent', () => {
   let fixture: ComponentFixture<HomeComponent>;
 
   let count = 0;
+  const VALUE = true;
+  let val = 0;
 
   beforeEach(async(() => {
     // TestBed
@@ -26,6 +29,9 @@ describe('HomeComponent', () => {
       declarations: [
         HomeComponent,
       ],
+      providers: [
+        BookService
+      ]
     })
       .compileComponents();
   }));
@@ -36,6 +42,7 @@ describe('HomeComponent', () => {
     component = fixture.debugElement.componentInstance;
     fixture.detectChanges();
     count += 1;
+    val = 1;
   });
 
   // 在所有it之前執行一次
@@ -51,6 +58,33 @@ describe('HomeComponent', () => {
   // 在所有it之後執行一次
   afterAll(() => {
   });
+
+  it('should be get book list (async)', fakeAsync(() => {
+    // fixture.whenStable().then(() => {
+    //   fixture.detectChanges();
+    //   expect(true).toBe(true);
+    // });
+    tick();
+    fixture.detectChanges();
+    expect(true).toBe(true);
+  }));
+
+  it('should be true', () => {
+    // expect(true).toBe(true);
+    expect(VALUE).toBe(VALUE);
+  });
+
+  it('should val be true', () => {
+    expect(val).toBe(1);
+  });
+
+  it('should val be false', () => {
+    expect(val).not.toBe(0);
+  });
+
+  /*it('should val be false', () => {
+    expect(val).toBe(-1);
+  });*/
 
   // home comp 是否有建立起來
   it('should create the home', () => {
@@ -74,12 +108,12 @@ describe('HomeComponent', () => {
     expect(component.hi('Jessie')).toEqual('Hello,Jessie');
   });
 
-  it('count = 5', () => {
+  /*it('count = 5', () => {
     expect(count).toEqual(5);
-  });
+  });*/
 
   // 巢狀式
-  describe('By Wayne', () => {
+  /*describe('By Wayne', () => {
     beforeEach(() => {
       count += 1;
     });
@@ -94,7 +128,7 @@ describe('HomeComponent', () => {
     it('count = 9', () => {
       expect(count).toEqual(9);
     });
-  });
+  });*/
 
   // 先驗證資料是否render h3 tag
   it('拿到api所回傳資料，驗證正確與否', () => {
@@ -121,8 +155,6 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   });*/
-
-  // createSpy 實作有些問題？
 
   // 建立假 function 的假 error
   it('should throw error on `getToddos()` method ', () => {

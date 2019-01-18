@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 // import 'rxjs/add/operator/catch';
 
 
+
 @Injectable()
 export class BookService {
 
@@ -34,5 +35,16 @@ export class BookService {
   //   const message = `Error status code ${error.status} at ${error.url}`;
   //   return Observable.throw(message);
   // }
+
+  // quer(): Observable<any[]> {
+  //   return this._http
+  //     .get('assets/api/book/books.json')
+  //     .map((response: Response) => response.json);
+  // }
+
+  quer(): Observable<string> {
+    const test = new Observable<string>();
+    return test;
+  }
 
 }

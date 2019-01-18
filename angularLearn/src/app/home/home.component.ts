@@ -1,6 +1,7 @@
+import { BookService } from './../book/book.service';
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
+// import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   moduleId: module.id,
@@ -67,8 +68,21 @@ export class HomeComponent implements OnInit {
   // 單元testing
   title = 'TestAngular';
   public testvalue = 0;
+  public ls: any[] = [];
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) { }
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    // private domSanitizer: DomSanitizer,
+    private book: BookService
+  ) { }
+
+  query() {
+    // this.book.quer().subscribe(res => {
+    //   this.ls = res;
+    // });
+    this.book.quer().subscribe(() => {
+    });
+  }
 
   // 單元testing
   hi(name: string): string {
@@ -97,14 +111,26 @@ export class HomeComponent implements OnInit {
     return 'test';
   }
 
+  getA(): string {
+    return 'A';
+  }
+
+  getB(): string {
+    return 'B';
+  }
+
+
   ngOnInit() {
     console.log(this.startDate);
-    this.matIconRegistry.addSvgIconInNamespace(
-      'custom-svg',
-      'angular',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/angular_whiteTransparent.svg')
-    );
+    // this.matIconRegistry.addSvgIconInNamespace(
+    //   'custom-svg',
+    //   'angular',
+    //   this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/angular_whiteTransparent.svg')
+    // );
 
     // this.matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+
+    // testing
+    this.query();
   }
 }
