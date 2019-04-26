@@ -485,6 +485,7 @@ AbstractControl 為下面3大類的基本抽象類別<br />
 ●Template-driven Forms: 情境用於表單很簡單驗證以及不需要額外的互動，若有增加連動驗證維護性低(非同步<br />
 https://angular.cn/guide/forms<br />
 https://www.youtube.com/watch?v=BME5p3_coyA<br />
+https://ithelp.ithome.com.tw/articles/10195280<br />
 必須引入formsModule<br />
 
 ＊使用到[(ngModel)]，必須加入”name”屬性，未加入會報錯，可取代加入[ngModelOptions]="{standalone: true}"<br />
