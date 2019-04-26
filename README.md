@@ -474,4 +474,201 @@ https://github.com/mgechev/angular-performance-checklist#use-trackby-option-for-
 中文解說<br />
 https://dotblogs.com.tw/explooosion/2017/04/29/035512<br />
 
+*****
 
+## ●Reactive Forms 、 Template-driven Forms
+*差異在Reactive Forms為同步, Template-driven Forms為非同步<br />
+AbstractControl 為下面3大類的基本抽象類別<br />
+1.FormGroup：一個表單為一個群組<br />
+2.FormControl : 用於檢查與驗證(ex: input、select)<br />
+3.FormArray：多個表單驗證狀態====>在Reactive Forms多一個class<br />
+●Template-driven Forms: 情境用於表單很簡單驗證以及不需要額外的互動，若有增加連動驗證維護性低(非同步<br />
+https://angular.cn/guide/forms<br />
+https://www.youtube.com/watch?v=BME5p3_coyA<br />
+必須引入formsModule<br />
+
+＊使用到[(ngModel)]，必須加入”name”屬性，未加入會報錯，可取代加入[ngModelOptions]="{standalone: true}"<br />
+＊如果使用驗證條件，在input上面加入html或加入自訂驗證規則（但以 Template-driven Forms會比較雜）<br />
+在form tag宣告一個變數#heroForm="ngForm”，去控制帶有ngModel指令和name屬性<br />
+所以angular會創建formControl並註冊到ngForm指令，註冊每個formControl時，使用name屬性作為鍵值<br />
+所以每個input都有name，angular表單用來註冊控件<br />
+Kevin這邊講到ngForm也可以視為FormGroup<br />
+＊ngModel除了控制，還有控制css這個表單是否被點選或者有變化...等<br />
+詳細表格見https://angular.cn/guide/forms  Track control state and validity with ngModel 標題<br />
+所以css 可以自定義看要做什麼顯示<br />
+應用ng-invalid 顯示提示框，也就是宣告一個變數裝入ngModel屬性，去抓取vaild...等屬性控制<br />
+為什麼是ngModel賦值給一個變數？主要是因為”exportAs”屬性設置成”ngModel”<br />
+除了click提交也可以用ngSubmit提交，必須在button type加上submit，<form>加入(ngSubmit)＝＝＝> 限定只用於Template-driven Forms <br />
+
+若select..option 加上ngValue，select必須加上compareWith，傳進去的值跟選單的值驗證<br />
+延伸下去用disable的時候處理欄位，詳細見網址<br />
+
+
+●Reactive Forms（同步）<br />
+https://www.youtube.com/watch?v=-0xwlICnq4w<br />
+必須引入ReactiveFormsModule<br />
+最大的差異不需要在input裡面多name屬性與ngModel綁定，而是用每個你想控制的加上formControlName<br />
+以及在<form>加上formGroup === Template-driven Forms的ngForm 直接設定<br />
+```
+@@@template
+<form [formGroup]="learnForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+</form>
+
+{{ learnForm.value | json }}
+@@@comp
+  public learnForm = new FormGroup({
+    name: new FormControl()
+  });
+```
+
+
+以上learnForm.value顯示出來，可見不用綁定ng-model，就可以控制<br />
+FormArray可以放多組FormControl和FormGroup<br />
+```
+**多個FormControl
+@@@template
+<form [formGroup]="learnForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <div formArrayName="items">
+    <div *ngFor="let item of itemBtn.controls; let i = index;">
+      <!-- [formControlName]="i" 做input binding -->
+      <input type="text" [formControlName]="i" />
+    </div>
+  </div>
+</form>
+
+{{ learnForm.value | json }}
+@@@comp
+  public learnForm = new FormGroup({
+    name: new FormControl(),
+    items: new FormArray([
+      new FormControl(),
+      new FormControl(),
+      new FormControl(),
+    ]) // 這樣就可以做新增移除
+  });
+  constructor() { }
+
+  // 主要是簡化template的寫法
+  get itemBtn(): FormArray {
+    return this.learnForm.get('items') as FormArray;
+  }
+```
+**多個FormGroup
+```
+<!-- formArray多個formGroup -->
+@@@template
+<form [formGroup]="learnForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <div formArrayName="items">
+    <div *ngFor="let item of itemBtn.controls; let i = index;" [formGroupName]="i">
+      <!-- [formControlName]="i" 做input binding -->
+      <input type="text" formControlName="address" />
+    </div>
+  </div>
+</form>
+
+{{ learnForm.value | json }}
+@@@comp
+  public learnForm = new FormGroup({
+    name: new FormControl(),
+    items: new FormArray([
+      new FormGroup(
+        {
+          address: new FormControl()
+        }
+      ),
+      new FormGroup({
+        address: new FormControl()
+      }),
+      new FormGroup({
+        address: new FormControl()
+      }),
+    ]) // 這樣就可以做新增移除
+  });
+  constructor() { }
+
+  // 主要是簡化template的寫法
+  get itemBtn(): FormArray {
+    return this.learnForm.get('items') as FormArray;
+  }
+```
+
+新增移除插入
+```
+<!-- formArray多個formGroup -->
+@@@template
+<form [formGroup]="learnForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <div formArrayName="items">
+    <div *ngFor="let item of itemBtn.controls; let i = index;" [formGroupName]="i">
+      <!-- [formControlName]="i" 做input binding -->
+      <input type="text" formControlName="address" />
+      <button (click)="remove(i);">X</button>
+      <button (click)="insert(i);">+</button>
+    </div>
+    <button (click)="add();">ADD</button>
+  </div>
+</form>
+
+{{ learnForm.value | json }}
+
+@@@comp
+  public remove(i: number) {
+    this.itemBtn.removeAt(i);
+  }
+
+  public add() {
+    this.itemBtn.push(new FormGroup(
+      {
+        address: new FormControl('增加')
+      }));
+  }
+
+  public insert(i: number, ) {
+    this.itemBtn.insert(i + 1, new FormGroup(
+      {
+        address: new FormControl('插入')
+      }));
+  }
+```
+
+官方最後結論希望remove、push、insert這3種操作
+```
+// 特殊按鈕
+  public clear() {
+    while (this.itemBtn.length > 1) {
+      this.itemBtn.removeAt(1);
+    }
+  }
+ ```
+
+減少modelChange的頻率用rxjs，所以用reactive form 避免不了用rxjs<br />
+用formBuilder建構物件array<br />
+```
+  constructor(
+    private fb: FormBuilder
+  ) { }
+
+  public learnForm2 = this.fb.group({
+    items: this.fb.array([
+    ],{ updateOn: 'blur'})
+  });
+```
+valuechange可以偵測輸入的值
+```
+  constructor(
+    private fb: FormBuilder
+  ) {
+    this.learnForm.get('name').valueChanges.subscribe(console.log);
+  }
+
+  ngOnInit() {
+    this.itemBtn.reset({ name: 1 });
+  }
+```
