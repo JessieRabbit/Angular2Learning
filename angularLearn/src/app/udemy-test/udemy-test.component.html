@@ -1,1 +1,26 @@
-{{ book.title }}
+<div class="row">
+  <div class="col-4">
+    <img class="book-image" [src]="book.image">
+  </div>
+
+  <div class="col-8">
+    <h2 class="book-title">{{ book.title }}</h2>
+  </div>
+
+  <div class="col-8">
+    <h4 class="book-desciption">{{ book.desciption }}</h4>
+  </div>
+
+  <div class="col-8">
+    <h3 class="book-price">{{ book.price | currency: 'USB':'symbol' }}</h3>
+  </div>
+
+  <div class="col-8">
+    <h4 class="book-upvotes">{{ book.upvotes }}</h4>
+  </div>
+
+  <div class="col-8">
+    <button class="upvote" (click)="upvote()">upvote</button>
+  </div>
+
+</div>

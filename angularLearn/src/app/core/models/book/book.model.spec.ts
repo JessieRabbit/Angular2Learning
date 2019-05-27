@@ -1,13 +1,14 @@
-import { BookInterface, BookModel } from './book.model';
+import { BookModel } from './book.model';
 import * as faker from 'faker';
 
-fdescribe('BookModel', () => {
+describe('BookModel', () => {
   let image: string;
   let title: string;
   let desciption: string;
   let price: number;
   let upvotes: number;
 
+  // 在沒有真實資料前，跑案例前先塞假資料，成功後，就可以在comp建立物件
   beforeEach(() => {
     image = faker.image.image();
     title = faker.lorem.words();

@@ -17,6 +17,14 @@ export class UdemyTestComponent implements OnInit {
   );
   constructor() { }
 
+  upvote() {
+    this.book.upvotes++;
+  }
+
+  votesCounter() {
+    return this.book.upvotes;
+  }
+
   ngOnInit() {
   }
 

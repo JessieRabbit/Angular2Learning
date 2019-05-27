@@ -1,0 +1,41 @@
+<!-- 基本 -->
+<!-- <form [formGroup]="learnForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+</form>
+
+{{ learnForm.value | json }} -->
+
+<!-- formArray多個formControl -->
+<!-- <form [formGroup]="learnForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <div formArrayName="items">
+    <div *ngFor="let item of itemBtn.controls; let i = index;"> -->
+<!-- [formControlName]="i" 做input binding -->
+<!-- <input type="text" [formControlName]="i" />
+    </div>
+  </div>
+</form>
+
+{{ learnForm.value | json }} -->
+
+
+<!-- formArray多個formGroup -->
+<form [formGroup]="learnForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <div formArrayName="items">
+    <div *ngFor="let item of itemBtn.controls; let i = index;" [formGroupName]="i">
+      <!-- [formControlName]="i" 做input binding -->
+      <input type="text" formControlName="address" />
+      <button (click)="remove(i);">X</button>
+      <button (click)="insert(i);">+</button>
+    </div>
+    <button (click)="add();">ADD</button>
+    <button (click)="clear();">CLEAR</button>
+    <button (click)="reset();">RESET</button>
+  </div>
+</form>
+
+{{ learnForm.value | json }}

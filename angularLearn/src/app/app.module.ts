@@ -23,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
 import { UdemyTestComponent } from './udemy-test/udemy-test.component';
+import { HeroFormsComponent } from './hero-forms/hero-forms.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { UdemyTestComponent } from './udemy-test/udemy-test.component';
     BackComponent,
     ConnectComponent,
     UdemyTestComponent,
+    HeroFormsComponent,
+    ReactiveFormsComponent,
   ],
   imports: [
     BrowserModule,
